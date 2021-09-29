@@ -14,5 +14,8 @@ app.use(cookieParser());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use((req, res, next, err) => {
+
+});
 
 module.exports = app;
