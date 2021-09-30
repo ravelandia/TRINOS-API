@@ -13,3 +13,5 @@ class BaseSerializer {
     };
   }
 }
+
+module.exports = BaseSerializer;

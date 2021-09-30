@@ -4,6 +4,7 @@ const logger = require('morgan');
 
 const indexRouter = require('./src/routes/index');
 const usersRouter = require('./src/routes/users');
+const ErrorSerializer = require('./src/serializers/ErrorSerializer');
 
 const app = express();
 
@@ -19,17 +20,12 @@ app.use('/users', usersRouter);
  * se pueda determinar el error
  */
 app.use((req, res, next) => {
-  res.status(404);
-  res.json({
-    err: ' Te mamaste ERROR 404 ',
-  });
+  res.json(new ErrorSerializer(404, 'TE MAMASTE: NOT FOUND'));
 });
 
 app.use((err, req, res, next) => {
-  console.log(err);
-  res.status(500);
   res.json({
-    err: err.message,
+    err: new ErrorSerializer(err.statusCode, err.message),
   });
 });
 

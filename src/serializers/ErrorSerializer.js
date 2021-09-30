@@ -1,7 +1,8 @@
-const BaseSerializer = require('./BaseSerializer');
+const Base = require('./BaseSerializer');
 
-class ErrorSerializer extends BaseSerializer {
+class ErrorSerializer extends Base {
   constructor(status, err) {
     super(status, null, err);
   }
 }
+module.exports = ErrorSerializer;
